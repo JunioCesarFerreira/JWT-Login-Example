@@ -107,14 +107,14 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := map[string]string{"token": tokenString}
-	fmt.Println("response:", response)
-	json.NewEncoder(w).Encode(response)
+	resp := map[string]string{"token": tokenString}
+	fmt.Println("token:", tokenString)
+	json.NewEncoder(w).Encode(resp)
 }
 
 // Rota protegida com autenticação JWT
 func protectedEndpoint(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Endpoint protected")
+	fmt.Println("protected")
 	if applyCORS(w, r, "GET") {
 		return
 	}
