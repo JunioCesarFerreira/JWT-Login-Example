@@ -80,8 +80,7 @@ Follow these steps to set up and run the application:
 
 - **Frontend**:
   - Vue.js: JavaScript framework for building user interfaces.
-  - Axios: Promise-based HTTP client for making API requests.
-  - Vuex: State management library for Vue.js applications.
+  - Vue Router: Routing library for Vue.js applications.
 
 - **Backend**:
   - Golang: Programming language used to build the API.
