@@ -31,9 +31,20 @@ type DataLogin struct {
 // Middleware para autenticar o token JWT
 func authenticate(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("\nauthenticate")
+
+		enableCors(&w)
+
+		if r.Method == "OPTIONS" {
+			return
+		}
+
 		tokenString := r.Header.Get("Authorization")
 
+		fmt.Println(tokenString)
+
 		if tokenString == "" {
+			fmt.Println("token is empty")
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
 		}
@@ -43,6 +54,7 @@ func authenticate(next http.HandlerFunc) http.HandlerFunc {
 		})
 
 		if err != nil {
+			fmt.Println("error: ", err)
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
 		}
@@ -50,32 +62,29 @@ func authenticate(next http.HandlerFunc) http.HandlerFunc {
 		if _, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 			next.ServeHTTP(w, r)
 		} else {
+			fmt.Println("token not valid")
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
 		}
 	}
 }
 
-func applyCORS(w http.ResponseWriter, r *http.Request, m string) bool {
-	fmt.Println("CORS")
-
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-
-	if r.Method == "OPTIONS" {
-		log.Println("OPTIONS")
-		w.Header().Set("Access-Control-Allow-Methods", m)
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-		return true
-	}
-	return false
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	(*w).Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+	(*w).Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 }
 
 // Rota para autenticação de login
 func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("login")
-	if applyCORS(w, r, "POST") {
+
+	enableCors(&w)
+
+	if r.Method == "OPTIONS" {
 		return
 	}
+
 	var user DataLogin
 	err := json.NewDecoder(r.Body).Decode(&user)
 	fmt.Println("nameid:", user.UserId)
@@ -114,11 +123,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 // Rota protegida com autenticação JWT
 func protectedEndpoint(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("protected")
-	if applyCORS(w, r, "GET") {
-		return
-	}
-	w.Write([]byte("protected route.\nIt works!"))
+	fmt.Println("\nprotected endpoint")
+
+	resp := map[string]string{"message": "Protected route.\nIt works!"}
+	json.NewEncoder(w).Encode(resp)
 }
 
 func main() {
