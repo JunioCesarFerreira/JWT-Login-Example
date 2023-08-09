@@ -26,7 +26,7 @@ Follow these steps to set up and run the application:
    Navigate to the `ui` directory:
 
    ```bash
-   cd ui
+   cd ../ui
    ```
 
    Install the required dependencies:
