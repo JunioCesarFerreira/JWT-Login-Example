@@ -87,6 +87,10 @@ Follow these steps to set up and run the application:
   - Gorilla Mux: Router and dispatcher for building web applications.
   - JWT: JSON Web Token library for authentication.
 
+## License
+
+This project is licensed under the MIT License - see file [LICENSE.md](LICENSE.md) for details.
+
 ---
 
 This project serves as a demonstration of integrating Vue.js with Golang for user authentication using JWT. It can be used as a starting point to build more complex authentication systems or as a learning resource for understanding the interaction between frontend and backend components.
