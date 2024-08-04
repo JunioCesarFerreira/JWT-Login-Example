@@ -6,7 +6,7 @@ import (
 
 type Login interface {
 	Authenticate(next http.HandlerFunc) http.HandlerFunc
-	GetToken(user DataLogin, interval int) (map[string]string, error)
+	GetToken(user LoginData, interval int) (map[string]string, error)
 }
 
 type LoginStorage interface {

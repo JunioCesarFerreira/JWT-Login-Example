@@ -1,7 +1,7 @@
 package login
 
 // Estrutura do usuário
-type DataLogin struct {
+type LoginData struct {
 	UserId string `json:"userId"`
 	Pwd    string `json:"pass"`
 }

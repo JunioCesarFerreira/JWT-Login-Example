@@ -32,7 +32,7 @@ func (j jwtLogin) initialize() {
 	}
 }
 
-func (j jwtLogin) GetToken(user DataLogin, interval int) (map[string]string, error) {
+func (j jwtLogin) GetToken(user LoginData, interval int) (map[string]string, error) {
 	// Gera o token JWT com tempo de expiração
 	expirationTime := time.Now().Add(time.Duration(interval) * time.Minute).Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{

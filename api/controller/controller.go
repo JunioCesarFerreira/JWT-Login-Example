@@ -21,7 +21,14 @@ func New(l pkgLogin.Login, r data.Repository) Controller {
 	}
 }
 
-// Rota para autenticação de login
+// @Summary Tenta validar usuário e fazer login
+// @Description Verifica se usuário é registrado e realiza login
+// @Tags Login
+// @Accept  json
+// @Produce  json
+// @Param LoginRequest body login.LoginData true "Usuário e Hash"
+// @Success 200
+// @Router /login [post]
 func (c Controller) Login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("login")
 
@@ -31,7 +38,7 @@ func (c Controller) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var user pkgLogin.DataLogin
+	var user pkgLogin.LoginData
 	err := json.NewDecoder(r.Body).Decode(&user)
 	fmt.Println("nameid:", user.UserId)
 	fmt.Println("pwdHashed:", user.Pwd)
@@ -55,7 +62,13 @@ func (c Controller) Login(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
-// Rota protegida com autenticação JWT
+// @Summary Rota protegida com autenticação JWT
+// @Description Testando Token JWT
+// @Tags Login
+// @Produce json
+// @Param Authorization header string true "JWT Token"
+// @Success 200
+// @Router /protected [get]
 func (c Controller) ProtectedEndpoint(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("\nprotected endpoint")
 
