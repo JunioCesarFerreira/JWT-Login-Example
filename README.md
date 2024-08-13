@@ -103,3 +103,7 @@ This project is licensed under the MIT License - see file [LICENSE.md](LICENSE.m
 ---
 
 This project serves as a demonstration of integrating Vue.js with Golang for user authentication using JWT. It can be used as a starting point to build more complex authentication systems or as a learning resource for understanding the interaction between frontend and backend components.
+
+The [TokenWebLoginGoVue](https://github.com/JunioCesarFerreira/TokenWebLoginGoVue) repository has a more complete project on this topic and with two implementations using JWT and PASETO.
+
+--- 
