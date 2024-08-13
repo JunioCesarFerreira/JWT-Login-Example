@@ -16,48 +16,57 @@ Follow these steps to set up and run the application:
 
 1. Clone this repository to your local machine:
 
-   ```bash
-   git clone https://github.com/JunioCesarFerreira/JWT-Login-Example
-   cd JWT-Login-Example
-   ```
+```bash
+git clone https://github.com/JunioCesarFerreira/JWT-Login-Example
+cd JWT-Login-Example
+```
 
 2. **Frontend Setup**:
    
-   Navigate to the `ui` directory:
+Navigate to the `ui` directory:
 
-   ```bash
-   cd ../ui
-   ```
+```bash
+cd ../ui
+```
 
-   Install the required dependencies:
+Install the required dependencies:
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-   Run the Vue.js development server:
+Run the Vue.js development server:
 
-   ```bash
-   npm run serve
-   ```
+```bash
+npm run serve
+```
 
-   Access the frontend UI by opening your web browser and visiting `http://localhost:8080`.
+Access the frontend UI by opening your web browser and visiting `http://localhost:8080`.
 
 3. **Backend Setup**:
 
-   Navigate to the `api` directory:
+Navigate to the `api` directory:
 
-   ```bash
-   cd ../api
-   ```
+```bash
+cd ../api
+```
 
-   Build and run the Golang API:
+Build and run the Golang API:
 
-   ```bash
-   go run main.go
-   ```
+```bash
+go run main.go
+```
 
-   The API will be accessible at `http://localhost:8082`.
+The API will be accessible at `http://localhost:8082`.
+
+4. **Docker Setup**:
+
+In the main directory run:
+
+```bash
+docker-compose build
+docker-compose up -d
+```
 
 ## Usage
 
