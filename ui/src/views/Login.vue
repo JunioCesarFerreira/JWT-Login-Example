@@ -17,7 +17,6 @@
 </template>
 
 
-
 <script>
 import CryptoJS from 'crypto-js'
 
@@ -70,11 +69,11 @@ export default {
     },
     handleSuccess(token) {
       this.message = SUCCESS_MESSAGE;
-      localStorage.setItem('authToken', token);
+      sessionStorage.setItem('authToken', token);
       this.$router.push('/protected');
     },
     handleFailure() {
-      localStorage.setItem('authToken', null);
+      sessionStorage.setItem('authToken', null);
       this.message = FAILURE_MESSAGE;
     },
     handleError() {
@@ -91,13 +90,11 @@ export default {
   text-align: center;
   padding: 20px;
 }
-
 .login-title {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
 }
-
 .form-container {
   display: flex;
   flex-direction: column;
@@ -107,26 +104,22 @@ export default {
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .input-group {
   margin: 10px 0;
   display: flex;
   align-items: center;
 }
-
 label {
   display: inline-block;
   width: 80px;
   font-weight: bold;
 }
-
 .input-field {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
 }
-
 .login-button {
   padding: 10px 20px;
   font-size: 16px;
@@ -137,11 +130,9 @@ label {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .login-button:hover {
   background-color: #0056b3;
 }
-
 .error-message {
   color: red;
   margin-top: 10px;
